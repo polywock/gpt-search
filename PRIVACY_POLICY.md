@@ -5,4 +5,4 @@
 
 Chats are cached locally to allow for fast searches. If another person has access to your computer, they might be able to look at your cached chats even if you're not signed in to ChatGPT. 
 
-To remove cached chats, uninstall to the extension or "Reset" in the options page. If you're using a shared computer, make sure to Reset each session.
+To remove cached chats, uninstall the extension or "Reset" in the options page. If you're using a shared computer, make sure to Reset each session.
