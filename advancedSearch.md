@@ -57,7 +57,7 @@ ketchup -turns 5
 #### Example  
 Search for chats with "javascript" created in 2023. 
 ```text
-javascript +u 2023/01/01 -u 2024/01/01 
+javascript +c 2023/01/01 -c 2024/01/01 
 ```
 
 ### Source flags 
@@ -86,6 +86,19 @@ Search Consensus gpt.
 consensus +gpt 
 ```
 
+### Search chats by custom GPT.
+
+Find all chats that used a specific GPT. This feature might not work if you recently installed GPT Search as no GPTs might be cached yet. 
+```
++g write for me 
+```
+
+Find all chats that used a specific GPT created before a specific date.
+```
++g write for me -c 2024/1/31
+```
+
+
 ### Exclude keywords  
 You can exclude keywords by including a minus sign. 
 
@@ -101,4 +114,10 @@ You can filter search results by another query with the && operator.
 Search for chats with "king" in title and "troll" in the body. 
 ```text
 +title king && +body troll
+```
+
+
+Search for chats that used Consensus GPT, but only those that have 'cognition' in the body. 
+```text
++g consensus && +body troll
 ```

@@ -4,7 +4,7 @@ Issue Tracker for GPT Search web extension.
 
 Please post issues here.
 
-## Install on [Chrome](https://chromewebstore.google.com/detail/gpt-search/glhkbfoibolghhfikadjikgfmaknpelb), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/gpt-search), or Edge (Still publishing).
+## Install on [Chrome](https://chromewebstore.google.com/detail/gpt-search/glhkbfoibolghhfikadjikgfmaknpelb), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/gpt-search), or [Edge](https://microsoftedge.microsoft.com/addons/detail/gpt-search/hcnfioacjbamffbgigbjpdlflnlpaole). 
 
 ## Main features
 1. Search through your conversation history. 
