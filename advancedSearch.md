@@ -39,7 +39,7 @@ Search for long chats with word "docker".
 docker +turns 20
 ```
 
-Exclude chats that were very short 
+Search for short chats with word ketchup. 
 ```text
 ketchup -turns 5 
 ```
