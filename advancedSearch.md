@@ -52,7 +52,7 @@ ketchup -turns 5
 
 **+u** YYYY/MM/DD: Filters for chats updated after the specified date.  
 
-**+u** YYYY/MM/DD: Filters for chats updated before the specified date.  
+**-u** YYYY/MM/DD: Filters for chats updated before the specified date.  
 
 #### Example  
 Search for chats with "javascript" created in 2023. 
