@@ -83,7 +83,7 @@ Search for chats with "africa" in title.
 Search Consensus gpt. 
 
 ```
-consensus +gpt 
++gpt consensus 
 ```
 
 ### Search chats by custom GPT.
