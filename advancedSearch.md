@@ -117,7 +117,7 @@ Search for chats with "king" in title and "troll" in the body.
 ```
 
 
-Search for chats that used Consensus GPT, but only those that have 'cognition' in the body. 
+Search for chats that used Consensus GPT, but only those that have 'troll' in the title. 
 ```text
-+g consensus && +body troll
++g consensus && +title troll
 ```
