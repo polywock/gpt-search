@@ -1,0 +1,50 @@
+{
+  "name": "gbar",
+  "version": "1.0.0",
+  "description": "aa",
+  "main": "index.js",
+  "sideEffects": [
+    "./src/background/*.ts"
+  ],
+  "browserslist": [
+    "chrome >= 112",
+    "firefox >= 112"
+  ],
+  "scripts": {
+    "build:common": "  rm -rf build   &&              webpack --config webpack.config.js && cp -r static/. staticCh/. build/unpacked   && find build   -name '.DS_Store' -type f -delete",
+    "build:commonFf": "rm -rf buildFf && FIREFOX=true webpack --config webpack.config.js && cp -r static/. staticFf/. buildFf/unpacked && find buildFf -name '.DS_Store' -type f -delete",
+    "build:dev": "    export NODE_ENV=development && npm run build:common",
+    "build:devFf": "  export NODE_ENV=development && npm run build:commonFf",
+    "build:prod": "   export NODE_ENV=production && npm run build:common   && cd build/unpacked   && zip -r ../packed.zip .",
+    "build:prodFf": " export NODE_ENV=production && npm run build:commonFf && cd buildFf/unpacked && zip -r ../packed.zip ."
+  },
+  "author": "",
+  "dependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/chrome": "^0.0.243",
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/node": "^20.11.17",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "babel-loader": "^9.1.3",
+    "clsx": "^2.1.0",
+    "css-loader": "^6.10.0",
+    "cssnano": "^6.0.3",
+    "escape-string-regexp": "^5.0.0",
+    "immer": "^10.0.3",
+    "lodash.debounce": "^4.0.8",
+    "postcss": "^8.4.35",
+    "postcss-loader": "^8.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "style-loader": "^3.3.4",
+    "terser-webpack-plugin": "^5.3.10",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.iterable", "ESNext"],
+    "types": ["@types/chrome", "@types/react", "@types/react-dom"],
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    "noImplicitAny": true,
+    "allowJs": true,
+    "sourceMap": false,
+    "jsx": "react-jsx"
+  },
+  "exclude": ["./node_modules", "./build"]
+}

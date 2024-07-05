@@ -1,0 +1,19 @@
+
+.Option {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+    margin-bottom: 20px;
+    column-gap: 40px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+
+    & > .display {
+        & > .context {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    }
+}

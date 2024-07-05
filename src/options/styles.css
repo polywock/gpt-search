@@ -1,0 +1,155 @@
+
+:root {
+    --accent: #4e00fd;
+    --accent-text-color: white;
+
+
+    --text-color: white;
+    --text-color-alt: #eaeaea;
+
+    --true-bg: black;
+    --bg: #181818;
+    --bg-secondary: #222;
+    --link-color: #c7a4f9;
+    
+    --border-1: #ffffff44;
+    --border: #ffffff66;
+    --border1: #ffffff88;
+
+    --menu-color: #422d73;
+    --menu-color-secondary: #594094;
+    --section-width: 700px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--true-bg);
+    font-family: "Segoe UI", "Avenir", Courier, monospace;
+}
+
+.Options {
+    color: var(--text-color-alt);
+    font-size: 16px;
+    display: grid;
+    justify-content: center;
+    margin-top: 80px;
+
+    & > .section {
+        background-color: var(--bg);
+        width: var(--section-width);
+        padding: 15px;
+        padding-bottom: 40px;
+        margin-bottom: 50px;
+        font-size: 0.95rem;
+
+        & > .title {
+            background-color: var(--accent);
+            color: var(--accent-text-color);
+            padding: 3px 12px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .raw {
+            white-space: word-break;
+        }
+
+        .colorWithReset {
+            display: grid;
+            align-items: center;
+            grid-auto-flow: column;
+            column-gap: 5px;
+        }
+
+        & > .promo {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+    }
+}
+
+select, input[type="text"], button {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    color: inherit;
+    padding: 8px;
+    
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+button {
+    border: 1px solid var(--border-1);
+}
+
+
+select, input[type="text"] {
+    --border: var(--border-1);
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid var(--border);
+
+    &:focus {
+        border: none;
+        outline: none;
+        border-bottom: 2px solid var(--border1);
+    }
+}
+
+
+
+select, button {
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+
+
+button {
+    font-size: 1.1em;
+}
+
+select, input[type="text"] {
+    text-align: center;
+}
+
+.card {
+    padding: 10px;
+    border: 1px solid var(--border-1);
+    display: inline-block;
+    font-size: 1.1em;
+    white-space: pre;
+}
+
+a:any-link {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.section.help {
+    .buttons {
+        display: grid;
+        margin-top: 40px;
+        font-size: 1rem;
+        grid-template-columns: max-content max-content 1fr max-content;
+        column-gap: 10px;
+        align-items: center;
+    }
+    
+    .RedButton {
+        background-color: #9b3232;
+        color: white;
+        border: none;
+    }
+}
+
+

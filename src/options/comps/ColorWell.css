@@ -1,0 +1,15 @@
+
+.ColorWell {
+
+    input[type="color"] {
+        width: 32px;
+        margin-left: 10px;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border: none;
+    }
+    input[type="color"]::-webkit-color-swatch {
+        border: none;
+    }
+}

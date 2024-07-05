@@ -1,0 +1,34 @@
+
+.Toggle {
+    display: inline-block;
+    width: 45px; 
+    /* border-radius: 50px; */
+    border-radius: 5px;
+    background-color: #a4a4a4;
+    border: 2px solid  #a4a4a4;
+    line-height: 0;
+    cursor: pointer;
+  
+    &::after {
+      pointer-events: none;
+      content: "";
+      display: inline-block;
+      background-color: white;
+      border: 1px solid #aaa;
+      border-radius: inherit;
+      box-sizing: border-box;
+      width: 18px;
+      height: 18px;
+      transition: transform 0.05s linear;
+      transform: translateX(0px);
+    }
+  
+    &.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+  
+      &::after {
+        transform: translateX(26px);
+      }
+    }
+  }

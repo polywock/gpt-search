@@ -1,0 +1,13 @@
+.Reset {
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 2px;
+    box-sizing: content-box;
+    opacity: 0.5;
+    user-select: none;
+    border-radius: 5px;
+  
+    &.active {
+      opacity: 1;
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "_lang": "en",
+  "_morpho": false,
+  "general": "General",
+  "help": "Help",
+  "strictSearch": "Strict search",
+  "strictSearchTooltip": "Increase threshold for matching results.",
+  "sortDate": "Sort by date",
+  "sortDateTooltip": "Sort results by date.",
+  
+  "issuePrompt": "Have issues or a suggestion?",
+  "issueDirective": "Provide feedback on Github.",
+  "areYouSure": "Are you sure?",
+  "showMore": "Show more",
+  "notFound": "Not found",
+
+  "data": "Data",
+  "sessionOnly": "Session-only caching",
+  "sessionOnlyTooltip": "Clear cached chat history on browser close. This increases search times and data usage, so use only if your device is shared.",
+  "showImage": "Show icon",
+  "showImageTooltip": "If a conversation used a custom GPT, show the icon if available.",
+  "searchChats": "Search chats...",
+  "search": "Search",
+  "language": "Language",
+  "context": "Context",
+  "contextTooltip": "Adjust how much surrounding information is displayed with each search result.",
+  "reset": "Reset",
+  "clearCache": "Clear cache",
+  "autoClear": "Auto-clear search",
+  "autoClearTooltip": "Clear search field when you click away.",
+  "enableShortcut": "Enable shortcut",
+  "enableShortcutTooltip": "Press '/' to quickly focus on the search box.",
+
+  
+  "highlightColor": "Highlight color",
+  "highlightColorTooltip": "Adjust the appearance of highlighted text.",
+
+  "highlightBold": "Bold highlight",
+  "highlightBoldTooltip": "Makes highlighted text bold for better visibility.",
+  "advancedSearch": "Advanced search",
+
+  "otherProjects": {
+    "header": "Other Projects",
+    "askScreenshot": "Take a screenshot on any page and automatically open it with ChatGPT. <i>Also available for <a href=\"https://youtu.be/0g_EQbp5q4g\">Claude</a> and <a href=\"https://youtu.be/I-VX31SoGZ0\">Gemini</a>.</i>",
+    "globalSpeed": "Set a default speed for video and audio!"
+  }
+}
