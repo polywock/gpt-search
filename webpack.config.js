@@ -10,16 +10,21 @@ const tsx = {
   use: "babel-loader"
 }
 
+const entry = {
+  raccoon: "./src/raccoon/index.tsx",
+  main: "./src/main.ts",
+  preamble: "./src/preamble/index.ts",
+  background: "./src/background/index.ts",
+  options: "./src/options/index.tsx"
+}
+
+if (env.FIREFOX) {
+  entry["mainLoader"] = "./src/mainLoader.ts"
+}
 
 const common = {
   target: "browserslist",
-  entry: {
-    raccoon: "./src/raccoon/index.tsx",
-    main: "./src/main.ts",
-    preamble: "./src/preamble/index.ts",
-    background: "./src/background/index.ts",
-    options: "./src/options/index.tsx"
-  },
+  entry,
   output: {
     path: resolve(__dirname, env.FIREFOX ? "buildFf": "build", "unpacked")
   },

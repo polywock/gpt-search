@@ -20,7 +20,7 @@ const _ResultItem = (props: { result: Result}) => {
         if (mode) {
             openLink(`https://chatgpt.com${url}`, mode === "fg")
         } else {
-            if (location.pathname !== url) softLink(url)
+            if (location.pathname !== url) softLink(url, 4000)
             clearTimeoutInfo()
 
             let scrollTo: {id: String, isCurrent?: boolean}
@@ -103,14 +103,15 @@ let SUPPORTS_SCROLL_INTO_VIEW = "scrollIntoViewIfNeeded" in Element.prototype
 async function tryScrollIntoView(target: string, subtle?: boolean, n = 40, delay = 250) {
     const mySymbol = Symbol()
     latestSymbol = mySymbol 
-    await timeout(50)
     for (let i = 0; i < n; i++) {
         i > 0 && await timeout(delay)
         if (latestSymbol !== mySymbol) return 
         const elem = document.querySelector(target)
         if (elem) {
             if (subtle) {
-                ;(elem as any).scrollIntoView()
+                
+                const parent = getScrollableParent(elem)
+                parent.scrollTo({top: 9999999, behavior: "smooth"})
             } else {
                 activateFor(elem)
                 SUPPORTS_SCROLL_INTO_VIEW ? (elem as any).scrollIntoViewIfNeeded() : (elem as any).scrollIntoView()
@@ -153,4 +154,20 @@ function ensureStyleElement() {
         focusStyle.textContent = ":is([bornagain], #bornagainnnn > #woo > #barked) { outline: 1px solid red !important; }"
     } 
     if (!focusStyle.isConnected) document.documentElement.appendChild(focusStyle)
+}
+
+
+
+function getScrollableParent(element: Element) {
+    let parent = element.parentNode as Element
+  
+    while (parent) {
+      const overflowY = window.getComputedStyle(parent).overflowY
+      if ((overflowY === 'auto' || overflowY === 'scroll') && parent.scrollHeight > parent.clientHeight) {
+        return parent
+      }
+      parent = parent.parentNode as Element
+    }
+    
+    return document.scrollingElement || document.documentElement;
 }

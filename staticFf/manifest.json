@@ -10,6 +10,9 @@
       "strict_min_version": "113.0"
     }
   },
+  "web_accessible_resources": [
+    {"resources": ["main.js"], "matches": ["https://chatgpt.com/*"]}
+  ],
   "default_locale": "en",
   "host_permissions": ["https://*.chatgpt.com/*", "https://*.openai.com/*"],
   "permissions": ["storage", "unlimitedStorage", "webRequest", "scripting"],
@@ -22,7 +25,7 @@
   "content_scripts": [
     {
       "matches": ["https://chatgpt.com/*"],
-      "js": ["preamble.js"]
+      "js": ["preamble.js", "mainLoader.js"]
     }
   ]
 }
