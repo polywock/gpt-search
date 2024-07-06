@@ -77,7 +77,7 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
                     ...(colorOverride ? ({'--needle-color': colorOverride} as any) : {})
                 }}>
                     {!!(status?.results.length) && status.results.map(v => (
-                        <ResultItem result={v} key={v.id}></ResultItem>
+                        <ResultItem scrollTop={config["g:scrollTop"]} result={v} key={v.id}></ResultItem>
                     ))} 
                     {status && !status.finished && <LoadMore/>}
                     {status && status.finished && !status.results?.length && <div className="NonFound">{gvar.gsm.notFound}</div>}

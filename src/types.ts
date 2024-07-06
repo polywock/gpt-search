@@ -13,6 +13,7 @@ export type Config = {
     'g:showImage': boolean,
     'g:sessionOnly': boolean,
     'g:orderByDate': boolean,
+    'g:scrollTop': boolean,
     'g:strictSearch': boolean,
 }
 
@@ -39,7 +40,7 @@ export type Gizmo = {
 
 export type LocalState = Config & TempState
 
-export const CONFIG_KEYS = ['g:version', 'g:lang', 'g:context', 'g:autoClear', 'g:disableShortcut', 'g:highlightColorDark', 'g:highlightColorLight', 'g:highlightUnderline', 'g:highlightBold', 'g:showImage', 'g:sessionOnly', 'g:orderByDate', 'g:strictSearch'] as const
+export const CONFIG_KEYS = ['g:version', 'g:lang', 'g:context', 'g:autoClear', 'g:disableShortcut', 'g:highlightColorDark', 'g:highlightColorLight', 'g:highlightUnderline', 'g:highlightBold', 'g:showImage', 'g:sessionOnly', 'g:orderByDate', 'g:scrollTop', 'g:strictSearch'] as const
 
 export const TEMP_KEYS = ['o:lastTheme', 'o:auth', 'o:ph', 'o:changeId', 'o:gizmos'] as const 
 

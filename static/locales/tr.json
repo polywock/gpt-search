@@ -5,7 +5,8 @@
   "strictSearchTooltip": "Eşleşen sonuçlar için eşiği artırın.",
   "sortDate": "Tarihe Göre Sırala",
   "sortDateTooltip": "Sonuçları tarihe göre sıralayın.",
-  
+  "scrollTop": "Yukarı kaydır",
+  "scrollTopTooltip": "Bir konuşma seçerken yukarı kaydırın.",
   "issuePrompt": "Bir sorununuz veya öneriniz mi var?",
   "issueDirective": "Github üzerinden geri bildirimde bulunun.",
   "areYouSure": "Emin misiniz?",

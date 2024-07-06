@@ -1,12 +1,13 @@
 
 import { memo, useRef, useState } from "react"
 import { Result } from "../types"
-import { softLink } from "../utils/misc"
+import {  softLink } from "../utils/misc"
 import { timeout } from "../../helper"
 import { CleverDiv } from "./CleverDiv"
 import { openLink } from "../../utils/browser"
+import { isFirefox } from "../../options/utils"
 
-const _ResultItem = (props: { result: Result}) => {
+const _ResultItem = (props: { result: Result, scrollTop: boolean}) => {
     const [max, setMax] = useState(4)
     const env = useRef({lastWasChild: false}).current
     const r = props.result
@@ -20,19 +21,19 @@ const _ResultItem = (props: { result: Result}) => {
         if (mode) {
             openLink(`https://chatgpt.com${url}`, mode === "fg")
         } else {
-            if (location.pathname !== url) softLink(url, 4000)
+            if (location.pathname !== url) softLink(url)
             clearTimeoutInfo()
 
             let scrollTo: {id: String, isCurrent?: boolean}
 
             if (messageId) {
                 scrollTo = {id: messageId}
-            } else if (env.lastWasChild && r.currentNodeId) {
+            } else if (r.currentNodeId) {
                 scrollTo = {id: r.currentNodeId, isCurrent: true}
             }
             env.lastWasChild = !!messageId
 
-            if (scrollTo) tryScrollIntoView(`div[data-message-id="${scrollTo.id}"]`, scrollTo.isCurrent) 
+            if (scrollTo) tryScrollIntoView(`div[data-message-id="${scrollTo.id}"]`, scrollTo.isCurrent, props.scrollTop) 
         }
 
     }
@@ -97,10 +98,20 @@ const _ResultItem = (props: { result: Result}) => {
 export const ResultItem = memo(_ResultItem)
 
 let latestSymbol: Symbol 
-
+let lastScrollPath: string 
 let SUPPORTS_SCROLL_INTO_VIEW = "scrollIntoViewIfNeeded" in Element.prototype
+let recentScroll: {
+    target: string,
+    subtle?: boolean,
+    scrollTop?: boolean,
+    time: number 
+}
 
-async function tryScrollIntoView(target: string, subtle?: boolean, n = 40, delay = 250) {
+
+
+async function tryScrollIntoView(target: string, subtle?: boolean, scrollTop?: boolean, isFake?: boolean, n = 60, delay = 100) {
+    gvar.scrollSetCbs.add(handleScrollSet)
+    recentScroll = null 
     const mySymbol = Symbol()
     latestSymbol = mySymbol 
     for (let i = 0; i < n; i++) {
@@ -108,14 +119,20 @@ async function tryScrollIntoView(target: string, subtle?: boolean, n = 40, delay
         if (latestSymbol !== mySymbol) return 
         const elem = document.querySelector(target)
         if (elem) {
+            const isFirst = lastScrollPath !== location.pathname
+            lastScrollPath = location.pathname
+            // if (isFirst) await timeout(isFirefox() ? 500 : 500)
+            if (isFirst && !isFake) recentScroll = {target, subtle, scrollTop, time: Date.now()}
+            
             if (subtle) {
-                
                 const parent = getScrollableParent(elem)
-                parent.scrollTo({top: 9999999, behavior: "smooth"})
-            } else {
-                activateFor(elem)
-                SUPPORTS_SCROLL_INTO_VIEW ? (elem as any).scrollIntoViewIfNeeded() : (elem as any).scrollIntoView()
-            }
+                if (parent) {
+                    parent.scrollTo({top: scrollTop ? 0 : 999999999, behavior: "smooth"})
+                    return 
+                }
+            } 
+            !subtle && activateFor(elem)
+            SUPPORTS_SCROLL_INTO_VIEW ? (elem as any).scrollIntoViewIfNeeded() : (elem as any).scrollIntoView()
             return 
         }
     }
@@ -168,6 +185,14 @@ function getScrollableParent(element: Element) {
       }
       parent = parent.parentNode as Element
     }
-    
-    return document.scrollingElement || document.documentElement;
+}
+
+
+
+async function handleScrollSet() {
+    let originalRecentScroll = recentScroll
+    if (!(recentScroll && Date.now() - recentScroll.time < 10_000)) return 
+    await timeout(1000)
+    if (originalRecentScroll !== recentScroll) return 
+    tryScrollIntoView(recentScroll.target, recentScroll.subtle, recentScroll.scrollTop, true)
 }

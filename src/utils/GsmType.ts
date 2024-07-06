@@ -8,6 +8,8 @@ export type Gsm = {
   strictSearchTooltip: string,
   sortDate: string,
   sortDateTooltip: string,
+  scrollTop: string,
+  scrollTopTooltip: string,
   issuePrompt: string,
   issueDirective: string,
   areYouSure: string,

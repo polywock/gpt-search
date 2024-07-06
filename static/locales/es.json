@@ -5,7 +5,8 @@
   "strictSearchTooltip": "Aumentar el umbral para los resultados coincidentes.",
   "sortDate": "Ordenar por fecha",
   "sortDateTooltip": "Ordenar los resultados por fecha.",
-
+  "scrollTop": "Desplazarse hacia arriba",
+  "scrollTopTooltip": "Desplácese hacia arriba al seleccionar una conversación.",
   "issuePrompt": "¿Tienes problemas o una sugerencia?",
   "issueDirective": "Proporciona comentarios en Github.",
   "areYouSure": "¿Estás seguro?",

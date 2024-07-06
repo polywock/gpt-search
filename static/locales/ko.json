@@ -5,7 +5,8 @@
   "strictSearchTooltip": "일치하는 결과의 임계값을 높입니다.",
   "sortDate": "날짜별 정렬",
   "sortDateTooltip": "결과를 날짜순으로 정렬합니다.",
-  
+  "scrollTop": "맨 위로 스크롤",
+  "scrollTopTooltip": "대화를 선택할 때 맨 위로 스크롤합니다.",
   "issuePrompt": "문제나 제안이 있나요?",
   "issueDirective": "Github에서 피드백 제공하기.",
   "areYouSure": "확실합니까?",

@@ -7,6 +7,8 @@
   "strictSearchTooltip": "Increase threshold for matching results.",
   "sortDate": "Sort by date",
   "sortDateTooltip": "Sort results by date.",
+  "scrollTop": "Scroll to top",
+  "scrollTopTooltip": "Scroll to the top when selecting a conversation.",
   
   "issuePrompt": "Have issues or a suggestion?",
   "issueDirective": "Provide feedback on Github.",

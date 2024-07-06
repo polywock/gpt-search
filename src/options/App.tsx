@@ -11,7 +11,7 @@ import "./styles.css"
 import { isFirefox } from "./utils"
 
 export function App() {
-    const [items, setItems] = useKnownKeys(["g:lang", "g:autoClear", "g:context", "g:disableShortcut", "g:highlightColorDark", "g:highlightColorLight", "g:highlightBold", "o:lastTheme", "g:sessionOnly", "g:showImage", "g:orderByDate", "g:strictSearch"])
+    const [items, setItems] = useKnownKeys(["g:lang", "g:autoClear", "g:context", "g:disableShortcut", "g:highlightColorDark", "g:highlightColorLight", "g:highlightBold", "o:lastTheme", "g:sessionOnly", "g:showImage", "g:orderByDate", "g:strictSearch", "g:scrollTop"])
     if (!items) return 
 
     return <div className="Options">
@@ -62,11 +62,16 @@ export function App() {
                     setItems({"g:highlightBold": v})
                 }}/>
             </Option>}
-            {<Option label={gvar.gsm.showImage} tooltip={gvar.gsm.showImageTooltip}>
+            <Option label={gvar.gsm.showImage} tooltip={gvar.gsm.showImageTooltip}>
                 <Toggle value={items["g:showImage"]} onChange={v => {
                     setItems({"g:showImage": v})
                 }}/>
-            </Option>}
+            </Option>
+            <Option label={gvar.gsm.scrollTop} tooltip={gvar.gsm.scrollTopTooltip}>
+                <Toggle value={items["g:scrollTop"]} onChange={v => {
+                    setItems({"g:scrollTop": v})
+                }}/>
+            </Option>
         </div>
         <div className="section">
             <div className="title">{gvar.gsm.search}</div>
@@ -80,11 +85,11 @@ export function App() {
                     setItems({"g:strictSearch": v})
                 }}/>
             </Option>}
-            {<Option label={gvar.gsm.sortDate} tooltip={gvar.gsm.sortDateTooltip}>
+            <Option label={gvar.gsm.sortDate} tooltip={gvar.gsm.sortDateTooltip}>
                 <Toggle value={items["g:orderByDate"]} onChange={v => {
                     setItems({"g:orderByDate": v})
                 }}/>
-            </Option>}
+            </Option>
         </div>
         <div className="section">
             <div className="title">{gvar.gsm.data}</div>

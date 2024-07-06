@@ -5,7 +5,8 @@
   "strictSearchTooltip": "Aumentar o limiar para resultados correspondentes.",
   "sortDate": "Ordenar por data",
   "sortDateTooltip": "Ordenar os resultados por data.",
-  
+  "scrollTop": "Rolar para o topo",
+  "scrollTopTooltip": "Role para o topo ao selecionar uma conversa.",
   "issuePrompt": "Tem problemas ou uma sugestão?",
   "issueDirective": "Forneça feedback no Github.",
   "areYouSure": "Você tem certeza?",

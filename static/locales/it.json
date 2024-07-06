@@ -5,7 +5,8 @@
   "strictSearchTooltip": "Aumenta la soglia per i risultati corrispondenti.",
   "sortDate": "Ordina per data",
   "sortDateTooltip": "Ordina i risultati per data.",
-  
+  "scrollTop": "Scorri verso l'alto",
+  "scrollTopTooltip": "Scorri verso l'alto quando selezioni una conversazione.",
   "issuePrompt": "Hai problemi o un suggerimento?",
   "issueDirective": "Fornisci feedback su Github.",
   "areYouSure": "Sei sicuro?",

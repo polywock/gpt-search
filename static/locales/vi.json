@@ -6,7 +6,8 @@
   "strictSearchTooltip": "Tăng ngưỡng cho kết quả phù hợp.",
   "sortDate": "Sắp xếp theo ngày",
   "sortDateTooltip": "Sắp xếp kết quả theo ngày.",
-  
+  "scrollTop": "Cuộn lên trên",
+  "scrollTopTooltip": "Cuộn lên trên khi chọn một cuộc trò chuyện.",
   "issuePrompt": "Có vấn đề hoặc gợi ý?",
   "issueDirective": "Cung cấp phản hồi trên Github.",
   "areYouSure": "Bạn có chắc không?",

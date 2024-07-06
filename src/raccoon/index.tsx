@@ -13,9 +13,11 @@ declare global {
         raccoonSearch?: HTMLInputElement,
         config?: Config,
         getItems?: typeof localGet,
-        setItems?: typeof localSet
+        setItems?: typeof localSet,
+        scrollSetCbs?: Set<() => void>
     }
 }
+gvar.scrollSetCbs = gvar.scrollSetCbs || new Set()
 
 async function main() {
     const b = gvar.preambleStub?.getBoundingClientRect()
@@ -70,12 +72,14 @@ requestGsm().then(gsm => {
 
 
 window.addEventListener('rusrusar', (e: CustomEvent) => {
-    const deets = e.detail
+    const deets = JSON.parse(e.detail)
     if (deets.type === 'NO_PUSH') {
         chrome.tabs.create({
             url: `${location.origin}/${deets.path}`,
             active: false
         })
+    } else if (deets.type === "SCROLL_SET") {
+        gvar.scrollSetCbs?.forEach(cb => cb())
     }
     e.stopImmediatePropagation()
 }, {capture: true})

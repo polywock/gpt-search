@@ -6,7 +6,8 @@
   "strictSearchTooltip": "一致する結果の閾値を上げる。",
   "sortDate": "日付で並べ替え",
   "sortDateTooltip": "結果を日付順に並べ替える。",
-  
+  "scrollTop": "トップへスクロール",
+  "scrollTopTooltip": "会話を選択するとトップにスクロールします。",  
   "issuePrompt": "問題または提案がありますか？",
   "issueDirective": "Githubでフィードバックを提供してください。",
   "areYouSure": "よろしいですか？",

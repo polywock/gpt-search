@@ -6,7 +6,8 @@
   "strictSearchTooltip": "提高匹配結果的閾值。",
   "sortDate": "按日期排序",
   "sortDateTooltip": "按日期對結果進行排序。",
-  
+  "scrollTop": "滾動到頂部",
+  "scrollTopTooltip": "選擇對話時滾動到頂部。",
   "issuePrompt": "有問題或建議嗎？",
   "issueDirective": "在Github上提供反饋。",
   "areYouSure": "您確定嗎？",
