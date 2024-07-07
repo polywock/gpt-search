@@ -127,7 +127,7 @@ async function tryScrollIntoView(target: string, subtle?: boolean, scrollTop?: b
             if (subtle) {
                 const parent = getScrollableParent(elem)
                 if (parent) {
-                    parent.scrollTo({top: scrollTop ? 0 : 999999999, behavior: "smooth"})
+                    parent.scrollTo({top: scrollTop ? 0 : 999999999, behavior: "instant"})
                     return 
                 }
             } 

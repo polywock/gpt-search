@@ -64,7 +64,7 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
                     setQuery('')
                     setBlur(true)
                 }
-            }} ref={searchRef} onFocusCapture={e => setBlur(false)} autoFocus={true} type="text" placeholder={gvar.gsm.search} value={query} onChange={e => setQuery(e.target.value)}/>
+            }} ref={searchRef} onFocusCapture={e => setBlur(false)} autoFocus={true} type="text" placeholder={gvar.gsm.search} value={(blur && query) ? "..." : query} onChange={e => setQuery(e.target.value)}/>
             {query && <Close className="closeIcon" onClick={e => {
                 setQuery('')
                 setBlur(true)
