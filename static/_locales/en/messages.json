@@ -1,8 +1,8 @@
 {
   "appName": {
-    "message": "GPT Search"
+    "message": "GPT Search: Conversation History Search"
   },
   "appDesc": {
-    "message": "Search your GPT conversation history."
+    "message": "Search your ChatGPT conversation history."
   }
 }
