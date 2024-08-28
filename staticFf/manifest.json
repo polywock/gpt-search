@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
   "short_name": "GPT Search",
-  "version": "0.0.972",
+  "version": "0.0.975",
   "description": "__MSG_appDesc__",
   "manifest_version": 3,
   "browser_specific_settings": {
@@ -14,7 +14,7 @@
     {"resources": ["main.js"], "matches": ["https://chatgpt.com/*"]}
   ],
   "default_locale": "en",
-  "host_permissions": ["https://*.chatgpt.com/*", "https://*.openai.com/*"],
+  "host_permissions": ["https://*.chatgpt.com/*"],
   "permissions": ["storage", "unlimitedStorage", "webRequest", "scripting"],
   "icons": { 
     "128": "128.png" 
@@ -25,7 +25,8 @@
   "content_scripts": [
     {
       "matches": ["https://chatgpt.com/*"],
-      "js": ["preamble.js", "mainLoader.js"]
+      "js": ["preamble.js", "mainLoader.js"],
+      "run_at": "document_start"
     }
   ]
 }

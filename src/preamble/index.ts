@@ -14,7 +14,8 @@ declare global {
         prep?: {
             ph?: string,
             disableShortcut?: boolean
-        }
+        },
+        mo?: MutationObserver
     }
     
     var gvar: GlobalVar
@@ -88,18 +89,16 @@ function handleMut(muts: MutationRecord[]) {
                 onNewNav(added as HTMLElement)
                 return 
             }
-            
-            for (let nav of (added as Element).getElementsByTagName("nav")) {
-                if (nav.ariaLabel?.toLowerCase() === "chat history") {
-                    onNewNav(nav)
-                }
-            }
+
+            let nav = getNav(added as Element)
+            nav && onNewNav(nav)
+
         }
     }
 }
 
 function checkIfNav(elem: Element) {
-    if (elem?.tagName === "NAV" && elem.ariaLabel?.toLowerCase() === "chat history") return true 
+    if (elem?.tagName === "NAV" && elem.ariaLabel && elem.classList.contains("h-full")) return true 
 }
 
 function onNewNav(nav: HTMLElement) {
@@ -110,19 +109,19 @@ function onNewNav(nav: HTMLElement) {
 
 function getNav(root?: Element) {
     for (let nav of (root ?? document.body).getElementsByTagName("nav")) {
-        if (nav.ariaLabel?.toLowerCase() === "chat history") {
+        if (nav.ariaLabel && nav.classList.contains("h-full")) {
             return nav 
         }
     }
 }
 
 
-function onLoaded() {
+async function onLoaded() {
     const nav = getNav()
     nav && onNewNav(nav)
 
-    const mo = new MutationObserver(handleMut)
-    mo.observe(document.body, {subtree: true, childList: true})
+    this.mo = new MutationObserver(handleMut)
+    this.mo.observe(document, {subtree: true, childList: true})
 }
 
 function main() {

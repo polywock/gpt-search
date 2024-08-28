@@ -1,3 +1,4 @@
+
 let blockScrollId: number 
 
 window.addEventListener('busbusab', (e: CustomEvent) => {
@@ -5,43 +6,16 @@ window.addEventListener('busbusab', (e: CustomEvent) => {
     if (deets.type === 'NAV') {
         if ((window as any).next?.router?.push) {
             (window as any).next.router.push(deets.path)
-            // deets.blockScroll && activateScrollBlock(deets.blockScroll)
-        } else {
+        } else if ((window as any).__remixRouter?.navigate) {
+            (window as any).__remixRouter.navigate(deets.path)
+        } {
             window.dispatchEvent(new CustomEvent('rusrusar', {detail: JSON.stringify({type: 'NO_PUSH', path: deets.path}), bubbles: false}))
         }
     }  else if (deets.type === "BLOCK_SCROLL") {
-        // deets.blockScroll && activateScrollBlock(deets.blockScroll)
     }
     e.stopImmediatePropagation()
 }, {capture: true})
 
-// function activateScrollBlock(ms: number) {
-//     clearBlockScrollId()
-//     blockScrollId = window.setTimeout(clearBlockScrollId, ms)
-// }
-
-// function clearBlockScrollId() {
-//     clearTimeout(blockScrollId)
-//     blockScrollId = null 
-// }
-
-
-
-// function shimScroll() {
-//     const ogFunc = window.scrollTo
-//     if (!ogFunc) return 
-
-//     const newFunc = function(...args: any[]) {
-//         if (blockScrollId) {
-//             return undefined
-//         }
-//         return ogFunc.apply(this, args)
-//     }
-//     window.scrollTo = newFunc 
-// }
-
-// let appliedScroll: {value: number, element: any, time: number}
-// let prev: number 
 
 function shimScroll2() {
     let originalDesc = Object.getOwnPropertyDescriptor(Element.prototype, "scrollTop")
@@ -51,7 +25,4 @@ function shimScroll2() {
     }, get: originalDesc.get, configurable: true})
 }
 
-
-
-// shimScroll()
 shimScroll2()
