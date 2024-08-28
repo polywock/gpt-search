@@ -8,7 +8,7 @@ window.addEventListener('busbusab', (e: CustomEvent) => {
             (window as any).next.router.push(deets.path)
         } else if ((window as any).__remixRouter?.navigate) {
             (window as any).__remixRouter.navigate(deets.path)
-        } {
+        } else {
             window.dispatchEvent(new CustomEvent('rusrusar', {detail: JSON.stringify({type: 'NO_PUSH', path: deets.path}), bubbles: false}))
         }
     }  else if (deets.type === "BLOCK_SCROLL") {
