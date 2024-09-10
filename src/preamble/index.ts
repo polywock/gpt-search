@@ -120,8 +120,8 @@ async function onLoaded() {
     const nav = getNav()
     nav && onNewNav(nav)
 
-    this.mo = new MutationObserver(handleMut)
-    this.mo.observe(document, {subtree: true, childList: true})
+    gvar.mo = new MutationObserver(handleMut)
+    gvar.mo.observe(document, {subtree: true, childList: true})
 }
 
 function main() {
