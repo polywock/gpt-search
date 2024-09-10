@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
-  "short_name": "ChatGPT Search Bar",
-  "version": "0.0.977",
+  "short_name": "GPT Search",
+  "version": "0.0.978",
   "description": "__MSG_appDesc__",
   "manifest_version": 3,
   "browser_specific_settings": {
