@@ -13,6 +13,7 @@
     & > .searchIcon {
         position: absolute;
         left: 10px;
+        pointer-events: none;
     }
 
     & > input {
@@ -30,7 +31,7 @@
         font-size: inherit;
         background-color: inherit;
         color: var(--text-color-primary);
-        cursor: pointer;
+        cursor: text;
         
         &:focus {
             outline: none;
