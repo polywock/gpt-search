@@ -8,5 +8,5 @@
 2. Beautifully integrated into ChatGPT's UI. 
 3. Blazingly fast after initial caching. 
 4. [Advanced search](./advancedSearch.md)
-5. 
+
 ![screenshot1](https://github.com/user-attachments/assets/60350b14-d7b8-4f9e-8a3d-9e6816387c0c)
