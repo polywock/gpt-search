@@ -9,6 +9,7 @@ import { useClickBlur } from "./hooks/useClickBlur"
 import clsx from "clsx"
 import { Config } from "../types"
 import { useResize } from "./hooks/useResize"
+import { setupBlurDetection } from "./utils/blurDetection"
 
 export const App = (props: {dark: boolean, top: number, left: number, config: Config}) => {
     const { config } = props 
@@ -20,6 +21,9 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
     const searchRef = useRef<HTMLInputElement>(null)
     const [query, setQuery] = useState("")
     const [status, setStatus] = useState<Status>(null)
+    const blurRef = useRef(blur);
+    const appRef = useRef<HTMLDivElement>(null);
+
     const smartBlur = useRef((value: boolean) => {
         if (value && config["g:autoClear"]) {
             setQuery("")
@@ -48,7 +52,39 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
 
     const colorOverride = config[props.dark ? "g:highlightColorDark" : "g:highlightColorLight"]
 
-    return <div id="App" className={clsx({
+    useEffect(() => {
+		blurRef.current = blur;
+	}, [blur]);
+
+	useEffect(() => {
+		searchRef.current.addEventListener(
+			"blur",
+			(e) => {
+				if (blurRef.current) return; // Use the ref instead of state
+				e.preventDefault(); // Prevent the blur action
+				setTimeout(() => {
+					searchRef.current?.focus();
+				}, 0);
+			},
+			{ capture: true }
+		);
+
+		// Setup blur detection
+		const removeBlurListeners = setupBlurDetection(
+			blurRef,
+            appRef,
+			() => {
+				setBlur(true);
+			}
+		);
+
+		// Cleanup event listeners when component unmounts
+		return () => {
+			removeBlurListeners();
+		};
+	}, []);
+
+    return <div id="App" ref={appRef} className={clsx({
         'peacock': !blur,
         dark: props.dark,
         bold: config["g:highlightBold"]
