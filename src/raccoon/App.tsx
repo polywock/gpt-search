@@ -20,6 +20,8 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
     const searchRef = useRef<HTMLInputElement>(null)
     const [query, setQuery] = useState("")
     const [status, setStatus] = useState<Status>(null)
+    const prompt_textarea = document.getElementById("prompt-textarea")
+
     const smartBlur = useRef((value: boolean) => {
         if (value && config["g:autoClear"]) {
             setQuery("")
@@ -32,6 +34,13 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
     useClickBlur(blur, !!query && pinned, smartBlur.current)
     const [scale, windowSize] = useResize(mainRef)
 
+    // Disable the prompt textarea when the search bar is focused
+    useEffect(() => {
+        prompt_textarea.contentEditable = blur ? "true" : "false"
+        return () => {
+            prompt_textarea.contentEditable = "true"
+        }
+    }, [blur])
 
     useEffect(() => {
         if (!query) {
