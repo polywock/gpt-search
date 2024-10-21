@@ -1,4 +1,3 @@
-
 import escapeStringRegexp from 'escape-string-regexp';
 
 type Context = {
@@ -150,4 +149,18 @@ function getNonExcluded(items: string[], exclude: string[]) {
         solts.push({idx: i, lb: 0, rb: 0, score: 20})
     }
     return solts 
+}
+
+export function searchChatData(chats: any[], searchTerms: string[]): any[] {
+    return chats.filter(chat => {
+        // Implement search logic to find matching chats based on search terms
+        // Example: search by chat title
+        for (const term of searchTerms) {
+            if (chat.title.includes(term)) {
+                return true;
+            }
+        }
+        // Add more search conditions as needed
+        return false;
+    });
 }

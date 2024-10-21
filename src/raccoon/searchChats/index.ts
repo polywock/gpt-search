@@ -1,9 +1,11 @@
-
 import { Result, Status } from "../types"
-import { multiFilterChats } from "./filterChats"
+import { multiFilterChats, filterChatData } from "./filterChats"
 import { produce } from "immer"
 import { Grabby } from "./Grabby"
 import debounce from "lodash.debounce"
+import { fetchChatData } from "../utils/fetchChats"
+import { parseChatData } from "../utils/extractChats"
+import { searchChatData } from "./core"
 
 declare global {
     interface Promise<T> {
@@ -94,5 +96,15 @@ export class SearchChats {
     static ref: SearchChats
 }
 
+export async function fetchAndProcessChatData(auth: string) {
+    const rawData = await fetchChatData(auth);
+    const parsedData = rawData.map(parseChatData);
+    return parsedData;
+}
 
-
+export async function filterAndSearchChats(auth: string, criteria: any, searchTerms: string[]) {
+    const chatData = await fetchAndProcessChatData(auth);
+    const filteredData = filterChatData(chatData, criteria);
+    const searchResults = searchChatData(filteredData, searchTerms);
+    return searchResults;
+}

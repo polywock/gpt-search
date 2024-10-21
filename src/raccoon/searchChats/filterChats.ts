@@ -126,3 +126,14 @@ function rebuildChats(parts: ChatPart[]) {
     return chats
 }
 
+export function filterChatData(chats: Chat[], criteria: any): Chat[] {
+    return chats.filter(chat => {
+        // Implement filtering logic based on criteria
+        // Example: filter by chat title
+        if (criteria.title && !chat.title.includes(criteria.title)) {
+            return false;
+        }
+        // Add more filtering conditions as needed
+        return true;
+    });
+}

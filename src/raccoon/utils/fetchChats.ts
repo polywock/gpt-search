@@ -1,7 +1,6 @@
 import { Chat, Chats } from "../types"
 import { extractChat } from "./extractChats"
 
-
 export async function fetchChats(page: number, auth: string) {
     const res = await fetch(`https://chatgpt.com/backend-api/conversations?offset=${page * 100}&limit=100&order=updated&expand=true`, {
         headers: {
@@ -25,4 +24,15 @@ export async function fetchChats(page: number, auth: string) {
         hasMore: (page + 1) * 100 < json.total,
         maxPages:  Math.ceil(json.total / 100)
     } satisfies Chats
+}
+
+export async function fetchChatData(auth: string) {
+    const res = await fetch('https://chatgpt.com/backend-api/conversations', {
+        headers: {
+            'Authorization': auth
+        }
+    });
+    if (!res.ok) throw Error('Failed to fetch chat data');
+    const json = await res.json();
+    return json.items;
 }

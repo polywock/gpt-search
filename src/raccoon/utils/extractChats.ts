@@ -66,4 +66,67 @@ export function extractChat(json: ConversationInterface) {
     return chat as Chat 
 }
 
+export function parseChatData(data: any): Chat {
+    let chat: Partial<Chat> = {}
+    chat.id = data.id ?? data.conversation_id
+    chat.gizmoId = data.gizmo_id
+    chat.createTime = data.create_time ? new Date(data.create_time).getTime() : null 
+    chat.updateTime = data.update_time ? new Date(data.update_time).getTime() : null 
+    chat.title = data.title
+    chat.isArchived = data.is_archived
+    chat.currentNodeId = typeof data.current_node === "string" ? data.current_node : null 
+    
+    chat.astChilds = []
+    chat.userChilds = []
 
+    const gizmoIds = new Set<string>()
+
+    for (let [_, mapping] of Object.entries(data.mapping ?? {})) {
+        const m = mapping.message
+        if (!m) continue 
+
+        if (m.metadata) {
+            if (m.metadata.gizmo_id) gizmoIds.add(m.metadata.gizmo_id)
+            if (m.metadata.model_slug?.startsWith('gpt-4')) chat.usedGPT4 = true 
+        }
+
+        if (m.author?.role === 'tool') {
+            if (m.author.name === 'dalle.text2im') chat.usedDalle = true 
+            if (m.author.name === 'python') chat.usedPython = true 
+            if (m.author.name === 'browser') chat.usedBrowser = true 
+        }
+
+        // text extraction 
+        if (!(m.id && m.author && m.content?.parts) || m.metadata?.is_visually_hidden_from_conversation) continue 
+        if (!(m.content.content_type === "text" || m.content.content_type === "multimodal_text")) continue 
+        if (!(m.author.role === "user" || m.author.role === "assistant")) continue 
+
+        const isUser = m.author.role === "user" 
+        const texts: string[] = []
+        m.content.parts.forEach(part => {
+            if (typeof part === "string") texts.push(part)
+        })
+        const text = texts.join('\n\n').trim()
+
+        text.length && (
+            chat[isUser ? 'userChilds' : 'astChilds'].push({
+                type: 'message',
+                content: text,
+                messageId: m.id,
+                byAst: m.author.role === "assistant"
+            })
+        )
+    }
+
+    chat.gizmoIds = [...gizmoIds]
+
+    if (chat.gizmoIds.length === 1) {
+        chat.gizmoId = chat.gizmoIds[0]
+    } else if (chat.gizmoIds.length > 1) {
+        chat.multiGizmo = true 
+    }
+
+    chat.childCount = chat.astChilds.length + chat.userChilds.length
+
+    return chat as Chat 
+}
