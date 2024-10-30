@@ -1,6 +1,6 @@
 
 import rawStyle from '../common/searchStyle.css?raw'
-import { createElement } from '../helper'
+import { createElement, timeout } from '../helper'
 import { isFirefox } from '../options/utils'
 import preStyle from './style.css?raw'
 
@@ -12,8 +12,7 @@ declare global {
         preambleStub: HTMLInputElement,
         auth?: string,
         prep?: {
-            ph?: string,
-            disableShortcut?: boolean
+            ph?: string
         },
         mo?: MutationObserver
     }
@@ -50,16 +49,6 @@ function loadScaffold() {
     gvar.preambleHost = host
 }
 
-function handleSlash(e: KeyboardEvent) {
-    if (["INPUT", "TEXTAREA"].includes((e.target as any).tagName) || (e.target as any).isContentEditable) return
-    if (!isFirefox() && gvar.prep && e.key === '/' && !gvar.prep.disableShortcut) {
-        if (gvar.raccoonSearch && e.type === 'keyup') {
-            gvar.raccoonSearch.focus()
-        } else if (!gvar.raccoonSearch && e.type === 'keydown') {
-            gvar.preambleStub.dispatchEvent(new Event('pointerdown'))
-        }
-    }
-}
 
 function insertPageStyle() {
     const s = document.createElement("style")
@@ -117,6 +106,7 @@ function getNav(root?: Element) {
 
 
 async function onLoaded() {
+    await timeout(500)
     const nav = getNav()
     nav && onNewNav(nav)
 
@@ -135,10 +125,6 @@ function main() {
             onLoaded() 
         }
     })
-
-    window.addEventListener('keypress', handleSlash, {capture: true})
-    window.addEventListener('keydown', handleSlash, {capture: true})
-    window.addEventListener('keyup', handleSlash, {capture: true})
     
     insertPageStyle()
 }

@@ -9,11 +9,8 @@ import { AnyDict } from "../types"
 
 // Prep is for preamble stuff.
 async function getPrep() {
-    const awaits = await Promise.all([
-        getSearchPlaceholder(), 
-        chrome.storage.local.get('g:disableShortcut').then(v => v['g:disableShortcut'] as boolean)
-    ])
-    return {ph: awaits[0], disableShortcut: awaits[1]}
+    const ph = await getSearchPlaceholder()
+    return {ph: ph || null}
 }
 
 async function getSearchPlaceholder(): Promise<string> {

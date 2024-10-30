@@ -11,7 +11,7 @@ import "./styles.css"
 import { isFirefox } from "./utils"
 
 export function App() {
-    const [items, setItems] = useKnownKeys(["g:lang", "g:autoClear", "g:context", "g:disableShortcut", "g:highlightColorDark", "g:highlightColorLight", "g:highlightBold", "o:lastTheme", "g:sessionOnly", "g:showImage", "g:orderByDate", "g:strictSearch", "g:scrollTop"])
+    const [items, setItems] = useKnownKeys(["g:lang", "g:autoClear", "g:context", "g:highlightColorDark", "g:highlightColorLight", "g:highlightBold", "o:lastTheme", "g:sessionOnly", "g:showImage", "g:orderByDate", "g:strictSearch", "g:scrollTop"])
     if (!items) return 
 
     return <div className="Options">
@@ -32,13 +32,6 @@ export function App() {
                     setItems({"g:autoClear": v})
                 }}/>
             </Option>}
-            {isFirefox() || (
-                <Option label={gvar.gsm.enableShortcut} tooltip={gvar.gsm.enableShortcutTooltip}>
-                    <Toggle value={!items["g:disableShortcut"]} onChange={v => {
-                        setItems({'g:disableShortcut': !v})
-                    }}/>
-                </Option>
-            )}
             {items['o:lastTheme'] === 'dark' && (
                 <Option label={gvar.gsm.highlightColor} tooltip={gvar.gsm.highlightColorTooltip}>
                     <ColorWell isActive={!!items["g:highlightColorDark"]} color={items["g:highlightColorDark"] || "#6dffd8"} onChange={v => {
