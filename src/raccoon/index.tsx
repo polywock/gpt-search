@@ -21,7 +21,7 @@ gvar.scrollSetCbs = gvar.scrollSetCbs || new Set()
 
 async function main() {
     const b = gvar.preambleStub?.getBoundingClientRect()
-    if (!(b.left && b.top)) return 
+    if (b.left == null || b.top == null) return 
     
     const [config, auth] = await Promise.all([
         chrome.storage.local.get(CONFIG_KEYS) as Promise<Config>,
@@ -61,7 +61,7 @@ async function main() {
 
     const dark = document.documentElement.classList.contains('dark')
 
-    root.render(<App config={config} dark={dark} top={b.top} left={b.left}/>)
+    root.render(<App config={config} dark={dark} top={b.top} left={b.left} isNewDesign={gvar.lastNav.className.includes("_sidebar")}/>)
 }
 
 

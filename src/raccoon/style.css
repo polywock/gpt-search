@@ -1,9 +1,13 @@
 
 #App {
+
     --bg: var(--sidebar-surface-primary, #f9f9f9);
     --bg-secondary: var(--sidebar-surface-secondary, #ececec);
-    --bg-tertiary: var(--sidebar-surface-tertiary, #e3e3e3);
-    
+
+    &.new {
+        --bg: var(--sidebar-surface-secondary, #ececec);
+        --bg-secondary: var(--sidebar-surface-tertiary, #e3e3e3);
+    }
 
     --border-light: rgba(0,0,0,.1);
     --border-medium: rgba(0,0,0,.15);
@@ -26,7 +30,11 @@
     &.dark {
         --bg: var(--sidebar-surface-primary, #0d0d0d);
         --bg-secondary: var(--sidebar-surface-secondary, #262626);
-        --bg-tertiary: var(--sidebar-surface-tertiary, #333);
+        
+        &.new {
+            --bg: var(--sidebar-surface-secondary, #262626);
+            --bg-secondary: var(--sidebar-surface-tertiary, #333);
+        }
 
         --border-light: rgba(255, 255, 255,.1);
         --border-medium: rgba(255, 255, 255,.15);
@@ -293,6 +301,3 @@
     border-radius: 2px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--bg-tertiary);
-}

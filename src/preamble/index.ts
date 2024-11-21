@@ -1,7 +1,6 @@
 
 import rawStyle from '../common/searchStyle.css?raw'
 import { createElement, timeout } from '../helper'
-import { isFirefox } from '../options/utils'
 import preStyle from './style.css?raw'
 
 declare global {
@@ -15,12 +14,11 @@ declare global {
             ph?: string
         },
         mo?: MutationObserver
+        lastNav: HTMLElement
     }
     
     var gvar: GlobalVar
 }
-
-let lastNav: HTMLElement
 
 
 function loadScaffold() {
@@ -34,13 +32,15 @@ function loadScaffold() {
 
     shadow.appendChild(style)
 
+    const searchWrapper = createElement(`<div class='wrapper'></div>`)
     const search = createElement(`<div class='search'></div>`) as HTMLDivElement
     const searchIcon = createElement(`<svg class='searchIcon' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="pointer-none absolute left-3 top-0 mr-2 h-full text-token-text-tertiary left-6" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`) as SVGElement
     const searchInput = createElement(`<input></input>`) as HTMLInputElement
     searchInput.placeholder = gvar.prep.ph
     search.appendChild(searchIcon)
     search.appendChild(searchInput)
-    shadow.appendChild(search)
+    searchWrapper.appendChild(search)
+    shadow.appendChild(searchWrapper)
     
     searchInput.addEventListener('pointerdown', handleStubClick, {capture: true, once: true})
     
@@ -69,7 +69,7 @@ function loadRaccoon() {
 }
 
 function handleMut(muts: MutationRecord[]) {
-    if (lastNav?.isConnected) return 
+    if (gvar.lastNav?.isConnected) return 
     for (let mut of muts) {
         for (let added of mut.addedNodes) {
             if (added.nodeType !== Node.ELEMENT_NODE) continue 
@@ -88,10 +88,11 @@ function handleMut(muts: MutationRecord[]) {
 
 function checkIfNav(elem: Element) {
     if (elem?.tagName === "NAV" && elem.ariaLabel && elem.classList.contains("h-full")) return true 
+    if (elem?.tagName === "NAV" && elem.className.includes("_sidebar")) return true 
 }
 
 function onNewNav(nav: HTMLElement) {
-    lastNav = nav 
+    gvar.lastNav = nav 
     gvar.preambleProxy ?? loadScaffold()
     nav.insertAdjacentElement('afterbegin', gvar.preambleProxy)
 }
@@ -99,6 +100,9 @@ function onNewNav(nav: HTMLElement) {
 function getNav(root?: Element) {
     for (let nav of (root ?? document.body).getElementsByTagName("nav")) {
         if (nav.ariaLabel && nav.classList.contains("h-full")) {
+            return nav 
+        }
+        if (nav.className.includes("_sidebar")) {
             return nav 
         }
     }

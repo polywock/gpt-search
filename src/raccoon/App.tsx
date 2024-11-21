@@ -10,7 +10,7 @@ import clsx from "clsx"
 import { Config } from "../types"
 import { useResize } from "./hooks/useResize"
 
-export const App = (props: {dark: boolean, top: number, left: number, config: Config}) => {
+export const App = (props: {dark: boolean, top: number, left: number, config: Config, isNewDesign: boolean}) => {
     const { config } = props 
 
 
@@ -50,7 +50,9 @@ export const App = (props: {dark: boolean, top: number, left: number, config: Co
     return <div id="App" className={clsx({
         'peacock': !blur,
         dark: props.dark,
-        bold: config["g:highlightBold"]
+        bold: config["g:highlightBold"],
+        wrapper: blur,
+        new: props.isNewDesign
     })} style={{
         top: props.top,
         left: props.left,

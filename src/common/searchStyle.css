@@ -1,4 +1,15 @@
 
+
+.wrapper {
+    margin-top: 10px;
+    
+    &.new {
+        margin: 10px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+    }
+}
+
 .search {
     font-size: 16px;
     display: grid;
@@ -6,7 +17,6 @@
     align-items: center;
     background-color: transparent;
     color: var(--text-color-primary);
-    margin-top: 10px;
     position: relative;
     -webkit-font-smoothing: antialiased;
 
