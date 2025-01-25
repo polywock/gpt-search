@@ -74,7 +74,7 @@ requestGsm().then(gsm => {
 window.addEventListener('rusrusar', (e: CustomEvent) => {
     const deets = JSON.parse(e.detail)
     if (deets.type === 'NO_PUSH') {
-        chrome.runtime.sendMessage({type: "OPEN_LINK", url: `${location.origin}/${deets.path}`, active: false})
+        chrome.runtime.sendMessage({type: "OPEN_LINK", url: `${location.origin}${deets.path}`, active: false})
     } else if (deets.type === "SCROLL_SET") {
         gvar.scrollSetCbs?.forEach(cb => cb())
     }

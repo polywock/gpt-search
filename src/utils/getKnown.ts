@@ -12,7 +12,6 @@ export async function setLocal(override: Partial<LocalState>) {
     await chrome.storage.local.set(override)
 }
 
-
 export async function setSessionKnown(override: Partial<SessionState>) {
     await chrome.storage.session.set(override)
 }

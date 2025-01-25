@@ -81,6 +81,12 @@ select, input[type="text"], button {
     }
 }
 
+/* Need explicit for Edge. */
+select {
+    background-color: var(--bg);
+    color: var(--text-color);
+}
+
 button {
     border: 1px solid var(--border-1);
 }

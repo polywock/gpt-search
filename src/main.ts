@@ -6,6 +6,8 @@ window.addEventListener('busbusab', (e: CustomEvent) => {
     if (deets.type === 'NAV') {
         if ((window as any).next?.router?.push) {
             (window as any).next.router.push(deets.path)
+        } else if ((window as any).__reactRouterDataRouter?.navigate) {
+            (window as any).__reactRouterDataRouter.navigate(deets.path)
         } else if ((window as any).__remixRouter?.navigate) {
             (window as any).__remixRouter.navigate(deets.path)
         } else {

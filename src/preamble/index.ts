@@ -33,6 +33,10 @@ function loadScaffold() {
     shadow.appendChild(style)
 
     const searchWrapper = createElement(`<div class='wrapper'></div>`)
+    if (gvar.lastNav.className.includes("_sidebar")) {
+        searchWrapper.classList.add('new')
+    }
+
     const search = createElement(`<div class='search'></div>`) as HTMLDivElement
     const searchIcon = createElement(`<svg class='searchIcon' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="pointer-none absolute left-3 top-0 mr-2 h-full text-token-text-tertiary left-6" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`) as SVGElement
     const searchInput = createElement(`<input></input>`) as HTMLInputElement
