@@ -2,6 +2,7 @@
 
 .wrapper {
     margin-top: 10px;
+    margin-right: 9px;
     
     &.new {
         margin: 10px;
